@@ -81,8 +81,8 @@ Cerrar la conexión con mongo
 ```
 > exit
 ```
-## Referencias
+## Refencias
 ```
-https://datos.codeandcoke.com/apuntes:mongodb
-https://docs.mongodb.com/manual/reference/mongo-shell/
+[Apuntes MongoDB](https://datos.codeandcoke.com/apuntes:mongodb)
+[Doc Oficial](https://docs.mongodb.com/manual/reference/mongo-shell/)
 ```
