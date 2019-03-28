@@ -57,3 +57,21 @@ if (fw != null) {
     fw.close();
 }
 ```
+----
+----
+----
+## Desde la consola
+Instalamos java en ubuntu
+```
+$ sudo apt-get update
+$ sudo apt-get install default-jre
+$ sudo apt-get install default-jdk
+```
+Compilar el programa
+```
+$ javac Escrbir.java
+```
+Ejecutar el programa
+```
+$ java Escribir
+```
