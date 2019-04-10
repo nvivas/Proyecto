@@ -1,0 +1,12 @@
+- name: Esto configura un servidor web httpd
+  hosts: instalar 
+  tasks:
+  - name: Instalar paquete apache
+    yum:
+      name: httpd
+      state: present
+
+  - name: Iniciar el servicio Apache (httpd)
+    service:
+      name: httpd
+      state: started
