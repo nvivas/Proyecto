@@ -8,7 +8,7 @@ $ sudo -i
 Editamos el archivo ```/etc/ansible/hosts```
 ```
 # vi /etc/ansible/hosts
-// añadimos las siguietes líneas. La 18 será la master, la 21 el nodo
+// añadimos las siguietes líneas. Son las máquinas nodo
 [test]
 192.168.3.18
 192.168.3.21
