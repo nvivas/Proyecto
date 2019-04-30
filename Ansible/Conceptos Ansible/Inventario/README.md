@@ -16,3 +16,4 @@ IP´s
 192.168.3.21
 ```
 
+Fuente: [Inventory](https://cheat.readthedocs.io/en/latest/ansible/inventory.html)
