@@ -5,6 +5,8 @@
  */
 package ventanaPedido;
 
+import clases.Armario;
+
 /**
  *
  * @author Nacho
@@ -71,6 +73,11 @@ public class PpalPedido extends javax.swing.JFrame {
         jPanel1.add(btnModificar);
 
         btnVer.setText("Ver");
+        btnVer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnVer);
 
         btnBuscar.setText("Buscar...");
@@ -167,6 +174,12 @@ public class PpalPedido extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
+       Armario a = new Armario();
+       String armario = a.puertas(1);
+       System.out.println(armario);
+    }//GEN-LAST:event_btnVerActionPerformed
 
     /**
      * @param args the command line arguments

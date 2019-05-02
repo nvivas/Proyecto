@@ -11,7 +11,7 @@ package clases;
  */
 public class Cliente {
     private Integer id_cliente;
-    private String nomcre;
+    private String nombre;
     private String direccion;
     private String cif;
     private Integer telefono;
@@ -21,9 +21,9 @@ public class Cliente {
     private String provincia;
     private String email;
 
-    public Cliente(Integer id_cliente, String nomcre, String direccion, String cif, Integer telefono, Integer movil, Integer cp, String poblacion, String provincia, String email) {
+    public Cliente(Integer id_cliente, String nombre, String direccion, String cif, Integer telefono, Integer movil, Integer cp, String poblacion, String provincia, String email) {
         this.id_cliente = id_cliente;
-        this.nomcre = nomcre;
+        this.nombre = nombre;
         this.direccion = direccion;
         this.cif = cif;
         this.telefono = telefono;
@@ -42,12 +42,12 @@ public class Cliente {
         this.id_cliente = id_cliente;
     }
 
-    public String getNomcre() {
-        return nomcre;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNomcre(String nomcre) {
-        this.nomcre = nomcre;
+    public void setNomcre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getDireccion() {

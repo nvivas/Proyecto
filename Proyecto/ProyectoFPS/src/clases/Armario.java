@@ -16,6 +16,11 @@ public class Armario {
     private Integer fondo;
     private Cajon cajon;
 
+    public Armario() {
+    }
+
+    
+    
     public Armario(Integer costado, Integer aparador, Integer trasera, Integer puerta, Integer ancho, Integer alto, Integer fondo) {
         this.costado = costado;
         this.aparador = aparador;
@@ -101,23 +106,23 @@ public class Armario {
         this.fondo = fondo;
     }
     
-    public void puertas(){
+    public String puertas(int cantidad){
         final int GRUESO = 19;
         final int CORNISA = 30;
         final int ZOCALO = 30; 
         final int HOLGURA = 3;
         
-        int cantidad = 1;
-        
-        int altoCostado = alto - CORNISA;
-        int fondoCostado = fondo - GRUESO;
-        int anchoAparador = ancho-GRUESO-GRUESO;
-        int anchoPuerta = (ancho-HOLGURA)/2;
-        int altoPuerta = alto - ZOCALO - HOLGURA*2;
+        int altoCostado = this.alto - CORNISA;
+        int fondoCostado = this.fondo - GRUESO;
+        int anchoAparador = this.ancho-GRUESO-GRUESO;
+        int anchoPuerta = (this.ancho-HOLGURA)/2;
+        int altoPuerta = this.alto - ZOCALO - HOLGURA*2;
         
         String costados = cantidad*2 + " Costado de " + altoCostado + " x " + fondoCostado;
         String aparador = cantidad*4 + " Aparador de " + anchoAparador + " x " + fondoCostado;
         String puerta = cantidad*2 + " Puertas de " + anchoPuerta + " x " + altoPuerta;
+        
+        return costados + "\n " + aparador + "\n" + puerta;
     }
     
 }
