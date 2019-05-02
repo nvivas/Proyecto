@@ -5,8 +5,11 @@
  */
 package ventanaProveedor;
 
+import Gestor.Comprobar;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
@@ -55,6 +58,7 @@ public class ColorProveedor extends javax.swing.JFrame {
         txtAncho = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtGrueso = new javax.swing.JTextField();
+        txtComprobar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -137,18 +141,32 @@ public class ColorProveedor extends javax.swing.JFrame {
 
         jLabel7.setText("Ancho");
 
-        txtLargo.setText("Número");
         txtLargo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtLargoKeyTyped(evt);
             }
         });
 
-        txtAncho.setText("Número");
+        txtAncho.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAnchoKeyTyped(evt);
+            }
+        });
 
         jLabel8.setText("Grueso");
 
-        txtGrueso.setText("Número");
+        txtGrueso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtGruesoKeyTyped(evt);
+            }
+        });
+
+        txtComprobar.setText("Comprobar");
+        txtComprobar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtComprobarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -158,41 +176,42 @@ public class ColorProveedor extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtColor)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtAbreviar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtLargo, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtAncho, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel8)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtGrueso, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGap(28, 28, 28)
+                                .addComponent(txtComprobar)
+                                .addGap(0, 368, Short.MAX_VALUE))
+                            .addComponent(txtColor)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addGap(18, 18, 18)
+                            .addComponent(txtProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jLabel6)
+                            .addGap(18, 18, 18)
+                            .addComponent(txtLargo, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jLabel7)
+                            .addGap(18, 18, 18)
+                            .addComponent(txtAncho, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jLabel8)
+                            .addGap(18, 18, 18)
+                            .addComponent(txtGrueso, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)))
+                .addGap(31, 31, 31))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,7 +229,8 @@ public class ColorProveedor extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtAbreviar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAbreviar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtComprobar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -226,7 +246,7 @@ public class ColorProveedor extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
                 .addGap(21, 21, 21))
         );
 
@@ -240,25 +260,73 @@ public class ColorProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void txtLargoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLargoKeyTyped
-        medidas(evt);
+        largo(evt);
     }//GEN-LAST:event_txtLargoKeyTyped
 
-    private void medidas(KeyEvent evt) throws HeadlessException {
+    private void txtAnchoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAnchoKeyTyped
+        ancho(evt);
+    }//GEN-LAST:event_txtAnchoKeyTyped
+
+    private void txtGruesoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGruesoKeyTyped
+        grueso(evt);
+    }//GEN-LAST:event_txtGruesoKeyTyped
+
+    private void txtComprobarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtComprobarActionPerformed
+        abrevia();
+    }//GEN-LAST:event_txtComprobarActionPerformed
+
+    private void abrevia() throws HeadlessException {
+        String abreviaPattern = "[A-z]{3}";
+        
+        Pattern patron = Pattern.compile(abreviaPattern);
+        String abrevia = txtAbreviar.getText();
+        
+        if(abrevia != null){
+            Matcher matcher = patron.matcher(abrevia);
+            if(!matcher.matches()){
+                JOptionPane.showMessageDialog(this, "La abreviatura no es correcta", "ERROR", 0);
+            }
+        }
+    }
+    
+    public void letras(KeyEvent evt) throws HeadlessException {
+        char c = evt.getKeyChar();
+        if (!Character.isLetter(c) && !(c == KeyEvent.VK_SPACE) && !(c == KeyEvent.VK_BACK_SPACE)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Solo se puede escribir letras");
+        }
+    }
+    
+   
+    
+    private void largo(KeyEvent evt) throws HeadlessException {
         char c = evt.getKeyChar();
         if (Character.isAlphabetic(c)) {
             evt.consume();
-            JOptionPane.showMessageDialog(this, "Solo puede escribir números", "ERROR", 0);
+            JOptionPane.showMessageDialog(this, "Solo puede escribir números (largo)", "ERROR", 0);
             txtLargo.setText("");
-        } 
-        
-        if(txtLargo.getText().isEmpty()){
-            System.out.println("Largo no puede estar vacío");
-        } else if(txtAncho.getText().isEmpty()){
-            System.out.println("Ancho no puede estar vacío");
-        } else if(txtGrueso.getText().isEmpty()){
-            System.out.println("Grueso no puede estar vacío");
-        }
-        
+            txtLargo.requestFocus();
+        }      
+    }
+    
+    private void ancho(KeyEvent evt) throws HeadlessException {
+        char c = evt.getKeyChar();
+        if (Character.isAlphabetic(c)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Solo puede escribir números(ancho)", "ERROR", 0);
+            txtAncho.setText("");
+            txtAncho.requestFocus();
+        }     
+    }
+    
+     private void grueso(KeyEvent evt) throws HeadlessException {
+        char c = evt.getKeyChar();
+        if (Character.isAlphabetic(c)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Solo puede escribir números(grueso)", "ERROR", 0);
+            txtGrueso.setText("");
+            txtGrueso.requestFocus();
+        }     
     }
     
     
@@ -325,6 +393,7 @@ public class ColorProveedor extends javax.swing.JFrame {
     private javax.swing.JTextField txtAbreviar;
     private javax.swing.JTextField txtAncho;
     private javax.swing.JTextField txtColor;
+    private javax.swing.JButton txtComprobar;
     private javax.swing.JTextField txtGrueso;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtLargo;

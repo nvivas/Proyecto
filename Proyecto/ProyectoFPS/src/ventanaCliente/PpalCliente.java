@@ -13,7 +13,6 @@ import javax.swing.JOptionPane;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Nacho
@@ -318,9 +317,9 @@ public class PpalCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
     private void txtPoblacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPoblacionKeyTyped
-        letras(evt);       
+        letras(evt);
     }//GEN-LAST:event_txtPoblacionKeyTyped
-    
+
     private void txtMovilKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMovilKeyTyped
         telefono(evt);
     }//GEN-LAST:event_txtMovilKeyTyped
@@ -334,39 +333,37 @@ public class PpalCliente extends javax.swing.JFrame {
         codPostal();
     }//GEN-LAST:event_btnProbarActionPerformed
 
-       
     private void codPostal() throws HeadlessException {
         String cp;
         Comprobar c = new Comprobar();
         // Guardar
         cp = c.comCp(txtCp.getText());
-        if(cp.equals("-1")){
+        if (cp.equals("-1")) {
             JOptionPane.showMessageDialog(this, "El númenor no tiene 5 dígitos", "ERROR", 0);
-        }else if(cp.equals("-2")){
+        } else if (cp.equals("-2")) {
             JOptionPane.showMessageDialog(this, "El campo cp contiene letras", "ERROR", 0);
-        }else{
+        } else {
             System.out.println("CP Correcto");
         }
-    
+
     }
 
     private void correo() throws HeadlessException {
         // Patron para que el Correo electronico sea bueno
-        String emailPattern = "^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@" +
-                "[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$";
-        
-      
+        String emailPattern = "^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@"
+                + "[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$";
+
         Pattern patron = Pattern.compile(emailPattern);
         String email = txtCorreo.getText();
-        
-        if(email != null){
+
+        if (email != null) {
             Matcher matcher = patron.matcher(email);
-            if(!matcher.matches()){
+            if (!matcher.matches()) {
                 JOptionPane.showMessageDialog(this, "El email no es correcto", "ERROR", 0);
-            } 
+            }
         }
     }
-    
+
     private void telefono(KeyEvent evt) throws HeadlessException {
         char c = evt.getKeyChar();
         if (Character.isAlphabetic(c)) {
@@ -374,7 +371,7 @@ public class PpalCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Solo puede escribir números", "ERROR", 0);
             // txtTelefono.setText("");
             // txtMovil.setText("");
-                   
+
         } else if (txtTelefono.getText().length() > 9) {
             JOptionPane.showMessageDialog(this, "El número debe ser exactamente de 9 digitos", "ERROR", 0);
             txtTelefono.setText("");
@@ -383,25 +380,30 @@ public class PpalCliente extends javax.swing.JFrame {
             txtMovil.setText("");
         }
     }
-        
+
     public void letras(KeyEvent evt) throws HeadlessException {
         char c = evt.getKeyChar();
         if (!Character.isLetter(c) && !(c == KeyEvent.VK_SPACE) && !(c == KeyEvent.VK_BACK_SPACE)) {
             evt.consume();
-            JOptionPane.showMessageDialog(null,"Solo se puede escribir letras");
+            JOptionPane.showMessageDialog(null, "Solo se puede escribir letras");
         }
     }
-    
-    
-    
 
-    
-    
-    
-    
-    
-    
-    
+    private void cif() throws HeadlessException {
+
+        String cif = txtCif.getText();
+        String cifPattern = "([A-Z])(\\d{8})||(\\d{8})([A-Z])";
+        Pattern patron = Pattern.compile(cifPattern);
+
+        if (cif != null) {
+            Matcher matcher = patron.matcher(cif);
+            if (!matcher.matches()) {
+                JOptionPane.showMessageDialog(this, "El cif no es correcto", "Error en cif", 0);
+                txtCif.requestFocus();
+            }
+        }
+    }
+
     /**
      * @param args the command line arguments
      */

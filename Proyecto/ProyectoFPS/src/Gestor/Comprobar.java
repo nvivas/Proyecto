@@ -5,6 +5,8 @@
  */
 package Gestor;
 
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -25,4 +27,7 @@ public class Comprobar {
         }
         
     }
+       
 }
+
+    
