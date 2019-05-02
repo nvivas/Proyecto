@@ -1,6 +1,7 @@
 package ventanaProveedor;
 
 import GUI.MenuPpal;
+import Gestor.Comprobar;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.util.regex.Matcher;
@@ -331,9 +332,41 @@ public class PpalProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtProvinciaKeyTyped
 
     private void btnProbarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProbarActionPerformed
-        correo();
+      //  correo();
+      //  codPostal();
+        cif();
     }//GEN-LAST:event_btnProbarActionPerformed
 
+    private void codPostal() throws HeadlessException {
+        String cp;
+        Comprobar c = new Comprobar();
+        // Guardar
+        cp = c.comCp(txtCp.getText());
+        if(cp.equals("-1")){
+            JOptionPane.showMessageDialog(this, "El númenor no tiene 5 dígitos", "ERROR", 0);
+        }else if(cp.equals("-2")){
+            JOptionPane.showMessageDialog(this, "El campo cp contiene letras", "ERROR", 0);
+        }else{
+            System.out.println("CP Correcto");
+        }
+    
+    }
+    
+     private void cif() throws HeadlessException {
+         
+         String cif = txtCif.getText();
+         String cifPattern = "(\\d{8})([A-Z]$) || ([A-Z](\\d{8}))";
+         Pattern patron = Pattern.compile(cifPattern);
+         
+         if(cif != null){
+             Matcher matcher = patron.matcher(cif);
+             if(!matcher.matches()){
+                 JOptionPane.showMessageDialog(this, "El cif no es correcto", "Error en cif", 0);
+                 txtCif.requestFocus();
+             }
+         }
+     }
+    
     private void correo() throws HeadlessException {
         // Patron para que el Correo electronico sea bueno
         String emailPattern = "^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@" +
@@ -375,6 +408,8 @@ public class PpalProveedor extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Solo se puede escribir letras");
         }
     }
+    
+    
     
     
     
