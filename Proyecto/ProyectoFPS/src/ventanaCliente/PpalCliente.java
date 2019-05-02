@@ -338,6 +338,7 @@ public class PpalCliente extends javax.swing.JFrame {
     private void codPostal() throws HeadlessException {
         String cp;
         Comprobar c = new Comprobar();
+        // Guardar en 
         cp = c.comCp(txtCp.getText());
         if(cp.equals("-1")){
             JOptionPane.showMessageDialog(this, "El númenor no tiene 5 dígitos", "ERROR", 0);
