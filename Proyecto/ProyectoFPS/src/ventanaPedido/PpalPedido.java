@@ -98,6 +98,7 @@ public class PpalPedido extends javax.swing.JFrame {
         jLabel7.setText("Proveedor");
 
         txtProveedor.setText("Se marcará cuando elijamos el color");
+        txtProveedor.setEnabled(false);
 
         cmbColor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 

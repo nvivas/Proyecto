@@ -199,6 +199,7 @@
     <Component class="javax.swing.JTextField" name="txtProveedor">
       <Properties>
         <Property name="text" type="java.lang.String" value="Se marcar&#xe1; cuando elijamos el color"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="cmbColor">

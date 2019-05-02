@@ -5,6 +5,10 @@
  */
 package ventanaPedido;
 
+import java.awt.HeadlessException;
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Nacho
@@ -18,7 +22,7 @@ public class AnadirModulo extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -67,15 +71,27 @@ public class AnadirModulo extends javax.swing.JFrame {
         jPanel1.add(jLabel5);
 
         txtAncho.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtAncho.setText("Número mm");
+        txtAncho.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAnchoKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtAncho);
 
         txtAlto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtAlto.setText("Número mm");
+        txtAlto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAltoKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtAlto);
 
         txtFondo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtFondo.setText("Número mm");
+        txtFondo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFondoKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtFondo);
 
         jPanel2.setLayout(new java.awt.GridLayout(2, 0, 0, 10));
@@ -155,6 +171,18 @@ public class AnadirModulo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtAnchoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAnchoKeyTyped
+        ancho(evt);                
+    }//GEN-LAST:event_txtAnchoKeyTyped
+
+    private void txtAltoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAltoKeyTyped
+        alto(evt);
+    }//GEN-LAST:event_txtAltoKeyTyped
+
+    private void txtFondoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFondoKeyTyped
+        fondo(evt);
+    }//GEN-LAST:event_txtFondoKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -209,4 +237,35 @@ public class AnadirModulo extends javax.swing.JFrame {
     private javax.swing.JTextField txtAncho;
     private javax.swing.JTextField txtFondo;
     // End of variables declaration//GEN-END:variables
+
+     private void alto(KeyEvent evt) throws HeadlessException {
+        char c = evt.getKeyChar();
+        if (Character.isAlphabetic(c)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Solo puede escribir números (alto)", "ERROR", 0);
+            txtAlto.setText("");
+            txtAlto.requestFocus();
+        }      
+    }
+    
+    private void ancho(KeyEvent evt) throws HeadlessException {
+        char c = evt.getKeyChar();
+        if (Character.isAlphabetic(c)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Solo puede escribir números(ancho)", "ERROR", 0);
+            txtAncho.setText("");
+            txtAncho.requestFocus();
+        }     
+    }
+    
+     private void fondo(KeyEvent evt) throws HeadlessException {
+        char c = evt.getKeyChar();
+        if (Character.isAlphabetic(c)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Solo puede escribir números(grueso)", "ERROR", 0);
+            txtFondo.setText("");
+            txtFondo.requestFocus();
+        }     
+    }
+
 }

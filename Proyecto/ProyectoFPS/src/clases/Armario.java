@@ -14,6 +14,7 @@ public class Armario {
     private Integer ancho;
     private Integer alto;
     private Integer fondo;
+    private Cajon cajon;
 
     public Armario(Integer costado, Integer aparador, Integer trasera, Integer puerta, Integer ancho, Integer alto, Integer fondo) {
         this.costado = costado;
@@ -25,6 +26,25 @@ public class Armario {
         this.fondo = fondo;
     }
 
+    public Armario(Integer costado, Integer aparador, Integer trasera, Integer puerta, Integer ancho, Integer alto, Integer fondo, Cajon cajon) {
+        this.costado = costado;
+        this.aparador = aparador;
+        this.trasera = trasera;
+        this.puerta = puerta;
+        this.ancho = ancho;
+        this.alto = alto;
+        this.fondo = fondo;
+        this.cajon = cajon;
+    }
+
+    public Cajon getCajon() {
+        return cajon;
+    }
+
+    public void setCajon(Cajon cajon) {
+        this.cajon = cajon;
+    }
+    
     public Integer getCostado() {
         return costado;
     }
