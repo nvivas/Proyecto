@@ -17,6 +17,7 @@ public class BuscarProveedor extends javax.swing.JDialog {
     public BuscarProveedor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

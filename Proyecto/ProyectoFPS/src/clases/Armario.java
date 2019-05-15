@@ -1,6 +1,8 @@
 
 package clases;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Nacho
@@ -15,7 +17,25 @@ public class Armario {
     private Integer alto;
     private Integer fondo;
     private Cajon cajon;
+    private String tipo;
 
+    public Armario(String tipo, Integer alto, Integer ancho, Integer fondo) {
+        this.ancho = ancho;
+        this.alto = alto;
+        this.fondo = fondo;
+        this.tipo = tipo;
+    }
+    
+    
+
+    public Armario(Integer ancho, Integer alto, Integer fondo) {
+        this.ancho = ancho;
+        this.alto = alto;
+        this.fondo = fondo;
+    }
+    
+    
+    
     public Armario() {
     }
 
@@ -105,24 +125,13 @@ public class Armario {
     public void setFondo(Integer fondo) {
         this.fondo = fondo;
     }
+
     
-    public String puertas(int cantidad){
-        final int GRUESO = 19;
-        final int CORNISA = 30;
-        final int ZOCALO = 30; 
-        final int HOLGURA = 3;
-        
-        int altoCostado = this.alto - CORNISA;
-        int fondoCostado = this.fondo - GRUESO;
-        int anchoAparador = this.ancho-GRUESO-GRUESO;
-        int anchoPuerta = (this.ancho-HOLGURA)/2;
-        int altoPuerta = this.alto - ZOCALO - HOLGURA*2;
-        
-        String costados = cantidad*2 + " Costado de " + altoCostado + " x " + fondoCostado;
-        String aparador = cantidad*4 + " Aparador de " + anchoAparador + " x " + fondoCostado;
-        String puerta = cantidad*2 + " Puertas de " + anchoPuerta + " x " + altoPuerta;
-        
-        return costados + "\n " + aparador + "\n" + puerta;
+    public String toString() {
+        return "Armario de "  + this.alto + " x " + this.ancho + " x " + this.fondo + "\n{" + "tipo = " + tipo + "\nancho=" + ancho + "\nalto=" + alto + "\nfondo=" + fondo + '}';
+//        return tipo + ", " + getancho + ", " + alto ", " + fondo;
     }
+    
+    
     
 }

@@ -12,7 +12,7 @@ public class Conexion {
         if (cnx == null) {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                cnx = DriverManager.getConnection("jdbc:mysql://localhost/hotel", usuario, pass);
+                cnx = DriverManager.getConnection("jdbc:mysql://localhost/fps", usuario, pass);
             } catch (SQLException | ClassNotFoundException ex) {
                 JOptionPane.showMessageDialog(null,"Error de conexión");
             }

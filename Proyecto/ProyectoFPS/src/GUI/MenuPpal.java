@@ -5,6 +5,11 @@
  */
 package GUI;
 
+import Gestor.Conexion;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import ventanaCliente.PpalCliente;
 import ventanaPedido.PpalPedido;
 import ventanaProveedor.PpalProveedor;
@@ -15,10 +20,15 @@ import ventanaProveedor.PpalProveedor;
  */
 public class MenuPpal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MenuPpal
-     */
+    
     public MenuPpal() {
+        
+        while(Conexion.cnx == null){
+            LoginDialog login = new LoginDialog(null, true);
+            login.setVisible(true);
+            JOptionPane.showMessageDialog(this, "Conectado");
+        }
+        
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -120,19 +130,33 @@ public class MenuPpal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPedidosActionPerformed
 
     private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
-        PpalCliente cliente = new PpalCliente();
-        cliente.setVisible(true);
-        this.dispose();
+        try {
+            PpalCliente cliente = new PpalCliente();
+            cliente.setVisible(true);
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(MenuPpal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnClienteActionPerformed
 
     private void btnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorActionPerformed
-        PpalProveedor proveedor = new PpalProveedor();
-        proveedor.setVisible(true);
-        this.dispose();
+        try {
+            PpalProveedor proveedor = new PpalProveedor();
+            proveedor.setVisible(true);
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(MenuPpal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnProveedorActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        System.exit(0);
+        try {
+            Conexion.cerrar();
+            JOptionPane.showMessageDialog(this, "Gracias por usar nuestra aplicación");
+            System.exit(0);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error al cerrar la aplicación");
+        }
     }//GEN-LAST:event_btnSalirActionPerformed
 
     /**

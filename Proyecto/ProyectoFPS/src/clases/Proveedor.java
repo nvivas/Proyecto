@@ -10,44 +10,47 @@ package clases;
  * @author Nacho
  */
 public class Proveedor {
-    private Integer id_cliente;
-    private String nomcre;
+    private Integer id_proveedor;
+    private String nombre;
     private String direccion;
     private String cif;
     private Integer telefono;
-    private Integer movil;
     private Integer cp;
     private String poblacion;
     private String provincia;
     private String email;
 
-    public Proveedor(Integer id_cliente, String nomcre, String direccion, String cif, Integer telefono, Integer movil, Integer cp, String poblacion, String provincia, String email) {
-        this.id_cliente = id_cliente;
-        this.nomcre = nomcre;
+    public Proveedor() {
+    }
+
+    
+    
+    public Proveedor(Integer id_proveedor, String nombre, String direccion, String cif, Integer telefono, Integer cp, String poblacion, String provincia, String email) {
+        this.id_proveedor = id_proveedor;
+        this.nombre = nombre;
         this.direccion = direccion;
         this.cif = cif;
         this.telefono = telefono;
-        this.movil = movil;
         this.cp = cp;
         this.poblacion = poblacion;
         this.provincia = provincia;
         this.email = email;
     }
 
-    public Integer getId_cliente() {
-        return id_cliente;
+    public Integer getId_proveedor() {
+        return id_proveedor;
     }
 
-    public void setId_cliente(Integer id_cliente) {
-        this.id_cliente = id_cliente;
+    public void setId_proveedor(Integer id_proveedor) {
+        this.id_proveedor = id_proveedor;
     }
 
-    public String getNomcre() {
-        return nomcre;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNomcre(String nomcre) {
-        this.nomcre = nomcre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getDireccion() {
@@ -72,14 +75,6 @@ public class Proveedor {
 
     public void setTelefono(Integer telefono) {
         this.telefono = telefono;
-    }
-
-    public Integer getMovil() {
-        return movil;
-    }
-
-    public void setMovil(Integer movil) {
-        this.movil = movil;
     }
 
     public Integer getCp() {
