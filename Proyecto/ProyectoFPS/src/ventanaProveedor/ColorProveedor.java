@@ -8,6 +8,8 @@ package ventanaProveedor;
 import Gestor.Comprobar;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -254,9 +256,13 @@ public class ColorProveedor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        PpalProveedor pro = new PpalProveedor();
-        pro.setVisible(true);
-        this.dispose();
+        try {
+            PpalProveedor pro = new PpalProveedor();
+            pro.setVisible(true);
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(ColorProveedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void txtLargoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLargoKeyTyped

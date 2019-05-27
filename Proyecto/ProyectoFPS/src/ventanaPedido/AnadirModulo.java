@@ -5,17 +5,11 @@
  */
 package ventanaPedido;
 
-import Gestor.Conexion;
-import clases.Armario;
 import clases.Modulo;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import sentencias.Tareas_despiece;
