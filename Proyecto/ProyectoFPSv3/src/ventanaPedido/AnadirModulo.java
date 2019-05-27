@@ -1,24 +1,17 @@
 package ventanaPedido;
 
-import Gestor.Conexion;
 import clases.Modulo;
+import clases.Pedido;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import sentencias.Tareas_despiece;
 import sentencias.Tareas_modulo;
+import sentencias.Tareas_pedidos;
 
 /**
  *
@@ -30,7 +23,7 @@ public class AnadirModulo extends javax.swing.JDialog {
     private final Tareas_despiece tareas_despiece = new Tareas_despiece();
     private Modulo modulo;
     private List<Modulo> tareas;
-
+    private Pedido pedido;
     private List<Integer> lista = new ArrayList<>();
 
     DefaultTableModel dtm;
@@ -39,6 +32,9 @@ public class AnadirModulo extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        cmbCliente.setSelectedItem(pedido.getNombre_cli());
+        cmbColor.setSelectedItem(pedido.getColor());
+        cargar();
         dtm = (DefaultTableModel) tabModulo.getModel();
         cargar_lista();
     }
@@ -206,6 +202,11 @@ public class AnadirModulo extends javax.swing.JDialog {
         jLabel8.setText("Cliente");
 
         cmbCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbClienteActionPerformed(evt);
+            }
+        });
 
         jLabel9.setText("Elegir color");
 
@@ -312,7 +313,7 @@ public class AnadirModulo extends javax.swing.JDialog {
     }//GEN-LAST:event_btnAnadirActionPerformed
 
     private void InsertarTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertarTablaActionPerformed
-         Pruebas.FicheroCNC.ficheroMpr();
+         Pruebas.FicheroCNC.ficheroCostado();
     }//GEN-LAST:event_InsertarTablaActionPerformed
 
 
@@ -321,7 +322,7 @@ public class AnadirModulo extends javax.swing.JDialog {
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnCSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCSVActionPerformed
-        fichero();
+        Pruebas.ficheroCSV.ficheroCSV();
     }//GEN-LAST:event_btnCSVActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
@@ -329,14 +330,18 @@ public class AnadirModulo extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
+    private void cmbClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbClienteActionPerformed
+        
+    }//GEN-LAST:event_cmbClienteActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton InsertarTabla;
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnAnadir;
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnCSV;
-    private javax.swing.JComboBox<String> cmbCliente;
-    private javax.swing.JComboBox<String> cmbColor;
+    public static javax.swing.JComboBox<String> cmbCliente;
+    public static javax.swing.JComboBox<String> cmbColor;
     private javax.swing.JComboBox<String> cmbModulo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -420,54 +425,26 @@ public class AnadirModulo extends javax.swing.JDialog {
 
     }
 
-    private void fichero() {
-        PreparedStatement consulta = null;
-        ResultSet resultado = null;
+    public void cargar() {
+        // Eliminar todos los items del combo
+        cmbCliente.removeAllItems();
+        cmbColor.removeAllItems();
+        // Añadir Un item vacío
+        cmbCliente.addItem("");
+        cmbColor.addItem("");
 
-        // select para sumar las cantidades, agruparlas y ordenar por costado
-        String sql_ordenar = "SELECT sum(cantidad) as cantidad, pieza, alto, ancho, grueso "
-                + "FROM despiece "
-                + "group by pieza, alto, ancho, grueso "
-                + "ORDER by pieza='costado' DESC";
-        try {
-            consulta = Conexion.cnx.prepareStatement(sql_ordenar);
-            resultado = consulta.executeQuery();
+        // listas para guardar cada nombre        
+        ArrayList<String> lista = new ArrayList<>();
+        ArrayList<String> lista1 = new ArrayList<>();
 
-        } catch (SQLException ex) {
-            Logger.getLogger(AnadirModulo.class.getName()).log(Level.SEVERE, null, ex);
+        lista = Tareas_pedidos.llenar_combo();
+        for (int i = 0; i < lista.size(); i++) {
+            cmbCliente.addItem(lista.get(i));
         }
-        try {
-            // ruto donde se creará el archivo
-            String ruta = "C:\\Users\\Nacho\\Desktop\\DAM2\\Tutoria\\Proyecto\\ProyectoFPS\\fichero.txt";
-            FileWriter fichero = new FileWriter(new File(ruta));
-            // File fichero = new File(ruta);
-            BufferedWriter bw;
 
-            // bw = new BufferedWriter(new FileWriter(fichero));
-            fichero.write("Despiece\n\r\n\r");
-            String datos = "";
-            String separador = ";";
-
-            // sacar uno a uno de cada tupla y campo
-            while (resultado.next()) {
-                datos = "\n\r";
-                datos += resultado.getInt("cantidad");
-                datos += separador;
-                datos += resultado.getString("pieza");
-                datos += separador;
-                datos += resultado.getInt("alto");
-                datos += separador;
-                datos += resultado.getInt("ancho");
-                datos += separador;
-                datos += resultado.getInt("grueso");
-                datos += "\n\r";
-                fichero.write(datos);
-            }
-            fichero.close();
-        } catch (IOException ex) {
-            System.out.println("ERROR en el fichero");
-        } catch (SQLException ex) {
-            Logger.getLogger(AnadirModulo.class.getName()).log(Level.SEVERE, null, ex);
+        lista1 = Tareas_pedidos.llenar_combo_color();
+        for (int i = 0; i < lista1.size(); i++) {
+            cmbColor.addItem(lista1.get(i));
         }
 
     }
@@ -531,6 +508,57 @@ public class AnadirModulo extends javax.swing.JDialog {
         System.out.println(lista.size());
     }
     
+    //    private void fichero() {
+//        PreparedStatement consulta = null;
+//        ResultSet resultado = null;
+//
+//        // select para sumar las cantidades, agruparlas y ordenar por costado
+//        String sql_ordenar = "SELECT sum(cantidad) as cantidad, pieza, alto, ancho, grueso "
+//                + "FROM despiece "
+//                + "group by pieza, alto, ancho, grueso "
+//                + "ORDER by pieza='costado' DESC";
+//        try {
+//            consulta = Conexion.cnx.prepareStatement(sql_ordenar);
+//            resultado = consulta.executeQuery();
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(AnadirModulo.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        try {
+//            // ruto donde se creará el archivo
+//            String ruta = "C:\\Users\\Nacho\\Desktop\\DAM2\\Tutoria\\Proyecto\\ProyectoFPS\\fichero.txt";
+//            FileWriter fichero = new FileWriter(new File(ruta));
+//            // File fichero = new File(ruta);
+//            BufferedWriter bw;
+//
+//            // bw = new BufferedWriter(new FileWriter(fichero));
+//            fichero.write("Despiece\n\r\n\r");
+//            String datos = "";
+//            String separador = ";";
+//
+//            // sacar uno a uno de cada tupla y campo
+//            while (resultado.next()) {
+//                datos = "\n\r";
+//                datos += resultado.getInt("cantidad");
+//                datos += separador;
+//                datos += resultado.getString("pieza");
+//                datos += separador;
+//                datos += resultado.getInt("alto");
+//                datos += separador;
+//                datos += resultado.getInt("ancho");
+//                datos += separador;
+//                datos += resultado.getInt("grueso");
+//                datos += "\n\r";
+//                fichero.write(datos);
+//            }
+//            fichero.close();
+//        } catch (IOException ex) {
+//            System.out.println("ERROR en el fichero");
+//        } catch (SQLException ex) {
+//            Logger.getLogger(AnadirModulo.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//    }
     
 
 }

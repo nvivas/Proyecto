@@ -54,7 +54,8 @@ public class MenuPpal extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Menú Principal");
 
-        btnCliente.setText("Clientes");
+        btnCliente.setText("Cliente");
+        btnCliente.setToolTipText("Gestión de Clientes");
         btnCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClienteActionPerformed(evt);
@@ -62,6 +63,7 @@ public class MenuPpal extends javax.swing.JFrame {
         });
 
         btnSalir.setText("Salir");
+        btnSalir.setToolTipText("Cerrar Programa");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
@@ -69,6 +71,7 @@ public class MenuPpal extends javax.swing.JFrame {
         });
 
         btnProveedor.setText("Proveedores");
+        btnProveedor.setToolTipText("Gestión de Proveedores");
         btnProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProveedorActionPerformed(evt);
@@ -76,6 +79,7 @@ public class MenuPpal extends javax.swing.JFrame {
         });
 
         btnPedidos.setText("Pedidos");
+        btnPedidos.setToolTipText("Gestión de Pedidos");
         btnPedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPedidosActionPerformed(evt);

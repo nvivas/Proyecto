@@ -80,7 +80,8 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnCliente">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Clientes"/>
+        <Property name="text" type="java.lang.String" value="Cliente"/>
+        <Property name="toolTipText" type="java.lang.String" value="Gesti&#xf3;n de Clientes"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClienteActionPerformed"/>
@@ -89,6 +90,7 @@
     <Component class="javax.swing.JButton" name="btnSalir">
       <Properties>
         <Property name="text" type="java.lang.String" value="Salir"/>
+        <Property name="toolTipText" type="java.lang.String" value="Cerrar Programa"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalirActionPerformed"/>
@@ -97,6 +99,7 @@
     <Component class="javax.swing.JButton" name="btnProveedor">
       <Properties>
         <Property name="text" type="java.lang.String" value="Proveedores"/>
+        <Property name="toolTipText" type="java.lang.String" value="Gesti&#xf3;n de Proveedores"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProveedorActionPerformed"/>
@@ -105,6 +108,7 @@
     <Component class="javax.swing.JButton" name="btnPedidos">
       <Properties>
         <Property name="text" type="java.lang.String" value="Pedidos"/>
+        <Property name="toolTipText" type="java.lang.String" value="Gesti&#xf3;n de Pedidos"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPedidosActionPerformed"/>

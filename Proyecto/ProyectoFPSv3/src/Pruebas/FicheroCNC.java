@@ -3,6 +3,10 @@ package Pruebas;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,24 +15,51 @@ import java.util.logging.Logger;
  * @author ivivamar
  */
 public class FicheroCNC {
-/*
+
     public static void main(String args[]) {
-
-        ficheroMpr();
-
+        ficheroCostado();
     }
-*/
-    public static void ficheroMpr() {
+
+    
+    public static void ficheroCostado() {
         int alto = 2200;
         int ancho = 600;
         int espesor = 25;
         String ceros = ".000000\n";
 
+        // Probar esto, si funciona meterlo en el nombre del directorio
+        String cliente = ventanaPedido.AnadirModulo.cmbCliente.getSelectedItem().toString();
+
+        // Probar esto, si funciona meterlo en el nombre del directorio
+        String color = ventanaPedido.AnadirModulo.cmbColor.getSelectedItem().toString();
+        String fechaTexto = formatoFecha();
+        File directorio = CrearDirectorio(fechaTexto);
+        escribirFichero(directorio, alto, ancho, ceros, espesor);
+    }
+
+    public static File CrearDirectorio(String fechaTexto) {
+        File directorio = new File(fechaTexto);
+        directorio.mkdir();
+        return directorio;
+    }
+
+    public static String formatoFecha() {
+        // Obteniendo la fecha actual del sistema.
+        Date fecha = new Date(Calendar.getInstance().getTimeInMillis());
+        // En esta linea de código estamos indicando el nuevo formato que queremos para nuestra fecha.
+        SimpleDateFormat formatter = new SimpleDateFormat("yy_MM_dd");
+        // Aqui usamos la instancia formatter para darle el formato a la fecha. Es importante ver que el resultado es un string.
+        String fechaTexto = formatter.format(fecha);
+        System.out.println(fechaTexto);
+        return fechaTexto;
+    }
+
+    public static void escribirFichero(File directorio, int alto, int ancho, String ceros, int espesor) {
         FileWriter fichero = null;
         try {
-            String ruta = "fichero.mpr";
+            String ruta = directorio + "\\costado_" + alto + "x" + ancho + ".mpr";
             fichero = new FileWriter(new File(ruta));
-            
+
             String datos = "[H\n"
                     + "VERSION=\"4.0 Alpha\"\n"
                     + "HP=\"1\"\n"
@@ -116,4 +147,11 @@ public class FicheroCNC {
             }
         }
     }
+
+    public static void ficheroMPRaparador() {
+
+        
+        
+    }
+
 }

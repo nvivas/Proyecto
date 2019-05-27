@@ -47,8 +47,12 @@ public class LoginDialog extends javax.swing.JDialog {
         jLabel2.setText("Contraseña");
 
         txtUsuario.setText("root");
+        txtUsuario.setToolTipText("Nombre de usuario");
+
+        txtContra.setToolTipText("Contraseña");
 
         btnEntrar.setText("Entrar");
+        btnEntrar.setToolTipText("Entrar");
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEntrarActionPerformed(evt);
@@ -56,6 +60,7 @@ public class LoginDialog extends javax.swing.JDialog {
         });
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.setToolTipText("Salir");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
