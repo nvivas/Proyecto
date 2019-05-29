@@ -1,0 +1,78 @@
+[H
+VERSION="4.0 Alpha"
+HP="1"
+IN="0"
+GX="0"
+BFS="1"
+GY="1"
+GXY="0"
+UP="0"
+FM="1"
+FW="450"
+HS="0"
+OP="1"
+MAT="WEEKE"
+INCH="0"
+VIEW="NOMIRROR"
+ANZ="1"
+_BSX=2200.000000
+_BSY=600.000000
+_BSZ=25.000000
+_FNX=0.000000
+_FNY=0.000000
+_RNX=0.000000
+_RNY=0.000000
+_RNZ=0.000000
+_RX=2200.000000
+_RY=600.000000
+
+[001
+l=2200
+KM="largo"
+a=600
+KM="ancho"
+e=25
+KM="espesor"
+
+<100 \WerkStck\
+LA="l"
+BR="a"
+DI="e"
+FNX="0"
+FNY="0"
+AX="0"
+AY="0"
+
+<139 \Komponente\
+IN="costado_19.mpr"
+XA="0.0"
+YA="0.0"
+ZA="0.0"
+EM="0"
+VA="l l"
+VA="a a"
+VA="e e"
+VA="casqui 1"
+VA="rebaje10 1"
+VA="rebaje3 0"
+VA="estantes 1"
+VA="zocalo 1"
+VA="techo 1"
+VA="cangrejo 1"
+VA="barra 1"
+VA="cajon 1"
+VA="cantidad 4"
+VA="barra2 1"
+VA="cangr2 1"
+VA="m_cajon 178"
+VA="m_zocalo 33"
+VA="c_cajon 2"
+VA="bisagra 80"
+VA="puertas2 1"
+VA="cant_bal 15"
+VA="freno 0"
+
+<101 \Kommentar\
+KM="WEEKE BHC"
+??="0"
+!
